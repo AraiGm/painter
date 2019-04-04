@@ -1,0 +1,26 @@
+<div class="main users-edit">
+  <div class="container">
+    <div class="form-heading">アカウント編集</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <% @user.errors.full_messages.each do |message| %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+        <% end %>
+
+        <%= form_tag("/s17874ty/painter/users/#{@user.id}/update", {multipart: true}) do %>
+          <p>ユーザー名</p>
+          <input name="nickname" value="<%= @user.nickname %>">
+          <p>プロフィール文</p>
+          <input name="bio" value="<%= @user.bio %>">
+          <p>画像を変更</p>
+          <input name="image" type="file">
+          <p>メールアドレスの変更</p>
+          <input name="email" value="<%= @user.email %>">
+          <input type="submit" value="保存">
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

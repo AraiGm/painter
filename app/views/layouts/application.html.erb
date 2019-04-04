@@ -3,12 +3,59 @@
   <head>
     <title>Painter</title>
     <%= csrf_meta_tags %>
-
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+  <div class="header-logo">
+    <% if @current_user %>
+          <%= link_to image_tag("/logo.png"),"/s17874ty/painter/posts/index"%>
+        <% else %>
+              <%= link_to image_tag("/logo.png"),"/s17874ty/painter"%>
+        <% end %>
+  </div>
+  <ul class="header-menus">
+    <% if @current_user %>
+         <li>
+           <%= link_to(@current_user.name, "/s17874ty/painter/users/#{@current_user.id}") %>
+         </li>
+         <li>
+           <%= link_to("投稿一覧", "/s17874ty/painter/posts/index") %>
+         </li>
+         <li>
+           <%= link_to("新規投稿", "/s17874ty/painter/posts/new") %>
+         </li>
+         <li>
+           <%= link_to("ユーザー一覧", "/s17874ty/painter/users/index") %>
+         </li>
+         <li>
+           <%= link_to("Webでお絵かき", "http://web.sfc.keio.ac.jp/~s17874ty/painter.html",target:"_blank") %>
+         </li>
+         <li>
+           <%= link_to("ログアウト", "/s17874ty/painter/logout", {method: :post}) %>
+         </li>
+       <% else %>
+         <li>
+          <!--<%= link_to("Painterとは", "/about") %>-->
+            <%= link_to("Painterとは","http://web.sfc.keio.ac.jp/~t17230yk/wordpress2/")%>
+         </li>
+         <li>
+           <%= link_to("新規登録", "/s17874ty/painter/signup") %>
+         </li>
+         <li>
+           <%= link_to("ログイン", "/s17874ty/painter/login") %>
+         </li>
+       <% end %>
+     </ul>
+</header>
+<% if flash[:notice] %>
+  <div class="flash">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
     <%= yield %>
   </body>
 </html>

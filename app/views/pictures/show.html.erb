@@ -4,11 +4,13 @@
   <strong>Name:</strong>
   <%= @picture.name %>
 </p>
-
-<p>
-  <%= image_tag(picture_picture_path(@picture))%>
-</p>
-
+<table>
+<tbody>
+  <tr>
+  <%= image_tag(picture_picture_path(@picture),:size=>"500x500")%>
+</tr>
+</tbody>
+</table>
 
 <%= link_to 'Edit', edit_picture_path(@picture) %> |
 <%= link_to 'Back', pictures_path %>

@@ -1,0 +1,31 @@
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+      <img src="<%= "/s17874ty/painter/user_images/#{@user.image_name}" %>">
+      <h2><%= @user.nickname %></h2>
+      <p>@<%= @user.name %></p>
+      <p><%= @user.bio %></p>
+      <% if @user.id == @current_user.id %>
+        <%= link_to("編集", "/s17874ty/painter/users/#{@user.id}/edit") %>
+      <% end %>
+    </div>
+      <ul class="user-tabs">
+      <li class="active"><%= link_to("投稿", "/s17874ty/painter/users/#{@user.id}") %></li>
+      <li><%= link_to("いいね!", "/s17874ty/painter/users/#{@user.id}/likes") %></li>
+      </ul>
+
+      <% @user.posts.each do |post| %>
+            <div class="posts-index-item">
+              <div class="post-left">
+                <img src="<%= "/s17874ty/painter/user_images/#{post.user.image_name}" %>">
+              </div>
+              <div class="post-right">
+                <div class="post-user-name">
+                  <%= link_to(post.user.nickname, "/s17874ty/painter/users/#{post.user.id}") %>
+                </div>
+                <%= link_to(post.content, "/s17874ty/painter/posts/#{post.id}") %>
+              </div>
+            </div>
+          <% end %>
+  </div>
+</div>

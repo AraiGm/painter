@@ -1,0 +1,18 @@
+<div class="main posts-index">
+  <div class="container">
+    <% @posts.each do |post| %>
+      <div class="posts-index-item">
+        <div class="post-left">
+          <img src="<%= "/s17874ty/painter/user_images/#{post.user.image_name}" %>">
+        </div>
+        <div class="post-right">
+          <div class="post-user-name">
+            <%= link_to(post.user.nickname, "/s17874ty/painter/users/#{post.user.id}") %>
+          </div>
+          <%= link_to(post.title, "/s17874ty/painter/posts/#{post.id}") %>
+        </div>
+        <%= image_tag show_image_post_path(post), class: "middle-img" %>
+      </div>
+    <% end %>
+  </div>
+</div>
